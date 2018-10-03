@@ -27,9 +27,9 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 >lista os discos conectados ao computador, identifique o que você irá usar 
 >e substitua o 'X' para a letra correspondente do seu disco
 - **irei usar a seguinte estrutura:**
-	- >/boot = 300mb
-	- >/swap = 2gb
-	- >/raiz = restante do disco
+	- /boot = 300mb
+	- /swap = 2gb
+	- /raiz = restante do disco
 ```
 # cfdisk /dev/sda
 ```
