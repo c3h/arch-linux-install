@@ -2,7 +2,8 @@
 passo a passo da instalação do Arch Linux ;)
 ## sobre
 Escrevi esse tutorial para aqueles que como eu, tiveram/irão ter problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na '"raça"'.
-Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia)
+
+Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
 ## conectando na internet 
 ```
 # wifi-menu
@@ -32,14 +33,17 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 ```
 # cfdisk /dev/sda
 ```
->caso apareca 'select label type' escolha 'gpt'	
-- **/para: '/boot'**
-	- > 'new' > 300M > 'type' > EFI System
-- **/para: '/swap'**
-	- > 'new' > 2G > 'type' > Linux swap
-- **/para: '/raiz'**
-	- > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
-	- > 'write' > 'yes' > 'quit'
+>caso apareca 'select label type' escolha 'gpt'
+
+**para: '/boot'**
+- > 'new' > 300M > 'type' > EFI System
+
+**para: '/swap'**
+- > 'new' > 2G > 'type' > Linux swap
+
+**para: '/raiz'**
+- > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
+- > 'write' > 'yes' > 'quit'
 ## formatando as partições
 ```
 # mkfs.fat -F32 /dev/sda1
@@ -168,7 +172,7 @@ $ su
 ```
 # ping -c3 archlinux.org
 ```
-## instalando a base-devel do arch
+## instalando base-devel do arch
 ```
 # pacman -S base-devel
 ```
