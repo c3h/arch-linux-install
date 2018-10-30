@@ -13,7 +13,7 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 ```
 # ping -c3 archlinux.org
 ```
-### verificando o modo de inicialização está como UEFI
+### verificando se está habilitado o UEFI
 ```
 # efivar -l
 ```
@@ -69,31 +69,35 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 ```
 # pacstrap /mnt base
 ```
-## configurando o FSTAB
+## configurando sistema
+### configurando o FSTAB
 ```
 # genfstab -U -p /mnt >> /mnt/etc/fstab
 ```
-## entrando no diretório root do sistema
+mais informações [aqui](https://pt.wikipedia.org/wiki/Fstab) e [aqui](https://wiki.archlinux.org/index.php/Fstab)
+### entrando no diretório root do sistema
 ```
 # arch-chroot /mnt
 ```
-## configurando o hostname
+mais informações [aqui](https://wiki.archlinux.org/index.php/Chroot_(Portugu%C3%AAs))
+### configurando o hostname
 ```
 # echo SUBSTITUA-ISSO > /etc/hostname
 ```
-## configure o teclado > KEYMAP
+### configure o teclado > KEYMAP
 ```
 # loadkeys br-abnt2
 # echo -e 'KEYMAP="br-abnt2.map.gz"' > /etc/vconsole.conf
 ```
-## configurando o idioma
+### configurando o idioma
 ```
 # sed -i '/pt_BR/,+1 s/^#//' /etc/locale.gen
 # locale-gen
 # echo LANG=pt_BR.UTF-8 > /etc/locale.conf
 # export LANG=pt_BR.UTF-8
 ```
-## configurando o fuso horário
+mais informações [aqui](https://wiki.archlinux.org/index.php/System_time)
+### configurando o fuso horário
 ```
 # ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 ```
@@ -101,7 +105,7 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 ```
 # hwclock --systohc --utc
 ```
-## configurando a conexão
+### configurando a conexão
 Ethernet:
 ```
 # systemctl enable dhcpcd
@@ -110,16 +114,16 @@ Wifi:
 ```
 # pacman -S wpa_supplicant wpa_actiond dialog iw networkmanager
 ```
-## configurando repositorio
+### configurando repositorio
 ```
 # sed -i '/multilib\]/,+1 s/^#//' /etc/pacman.conf
 # pacman -Syu
 ```
-## colocar senha para o usuário root
+### colocar senha para o usuário root
 ```
 # passwd
 ```
-## criar usuario
+### criar usuario
 ```
 # useradd -m -g users -G wheel,storage,power -s /bin/bash COLOQUE-O-NOME-DO-USUARIO
 ```
@@ -127,15 +131,15 @@ Definir senha do usuário:
 ```
 # passwh COLOQUE-O-NOME-DO-USUARIO
 ```
-## dando permisão administrativas para os usuarios do grupo wheel
+### dando permisão administrativas para os usuarios do grupo wheel
 ```
 # sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
 ```
-## atualizando o 'sudo'
+### atualizando o 'sudo'
 ```
 # pacman -S sudo
 ```
-## instalando o bootloader
+### instalando o bootloader
 ```
 # bootctl --path=/boot install
 # nano /boot/loader/loader.conf
@@ -155,65 +159,65 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options root=/dev/sda2 rw
 ```
-## demontando as partições e reiniciando
+### demontando as partições e reiniciando
 ```
 # exit
 # umount -R /mnt
 # reboot
 ```
-## pós instalação
+### pós instalação
 >realize o login no sistema
 ```
 $ su
 # loadkeys br-abnt2
 ```
-## conecte na internet
+### conecte na internet
 ```
 # nmtui
 ```
-## testando conexão
+### testando conexão
 ```
 # ping -c3 archlinux.org
 ```
-## instalando base-devel do arch
+### instalando base-devel do arch
 ```
 # pacman -S base-devel
 ```
-## instalando o XORG 
+### instalando o XORG 
 ```
 # pacman -S xorg-server xorg-xinit xorg-apps mesa ttf-dejavu gvfs-mtp
 ```
-## drivers gráficos
+### drivers gráficos
 >recomendo que leia: https://github.com/Sup3r-Us3r/Arch-Install#instalar-drivers-gr%C3%81ficos
 ```
 # pacman -S xf86-video-intel
 ```
-## drivers para a placa de som
+### drivers para a placa de som
 ```
 # pacman -S alsa-utils alsa-lib pulseaudio pulseaudio-alsa pavucontrol
 ```
-## drivers touchpad
+### drivers touchpad
 ```
 # pacman -S xf86-input-synaptics
 ```
-## instalando algumas fontes
+### instalando algumas fontes
 ```
 # sudo pacman -S ttf-dejavu ttf-bitstream-vera ttf-liberation
 ```
-## gerenciador de login
+### gerenciador de login
 ```
 # pacman -S gdm
 ```
-## interface gráfica
+### interface gráfica
 >recomendo que leia: https://github.com/Sup3r-Us3r/Arch-Install#instalar-ambiente-de-trabalho
 ```
 # pacman -S gnome
 ```
-## GDM: ativar inicialização junto com o sistema
+### GDM: ativar inicialização junto com o sistema
 ```
 # systemctl enable gdm.service
 ```
-## NetworkManager: ativar inicialização junto com o sistema
+### NetworkManager: ativar inicialização junto com o sistema
 ```
 # systemctl enable NetworkManager.service
 ```
