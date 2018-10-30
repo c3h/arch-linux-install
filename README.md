@@ -1,18 +1,19 @@
 # install-arch-linux
 passo a passo da instalação do Arch Linux ;)
 ## sobre
-Escrevi esse tutorial para aqueles que como eu, tiveram/irão ter problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na '"raça"'.
+Escrevi esse tutorial para aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça".
 
 Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
-## conectando na internet 
+# 1.0 pré-instalação
+## 1.1 conectando na internet 
 ```
 # wifi-menu
 ```
-## testando conexão
+### 1.1.1 testando conexão
 ```
 # ping -c3 archlinux.org
 ```
-## verificando o modo de inicialização está como UEFI
+## 1.1.2 verificando o modo de inicialização está como UEFI
 ```
 # efivar -l
 ```
@@ -20,7 +21,7 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 ```
 # loadkeys br-abnt2
 ```
-## particionamento de disco
+## 1.2 disco
 ```
 # fdisk -l
 ```
@@ -44,25 +45,27 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 **para: '/raiz'**
 - > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
 - > 'write' > 'yes' > 'quit'
-## formatando as partições
+
+### 1.2.1 formatando as partições
 ```
 # mkfs.fat -F32 /dev/sda1
 # mkswap /dev/sda2
 # mkfs.ext4 /dev/sda3
 ```
-## montando as partições
+### 1.2.2 montando as partições
 ```
 # mkdir -p /mnt/boot
 # mount /dev/sda1 /mnt/boot
 # swapon /dev/sda2
 # mount /dev/sda3 /mnt
 ```
-## escolhendo o espelho de download
+# 2.0 instalação
+## 2.1 escolhendo o espelho de download
 ```
 # pacman -Sy reflector
 # reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 ```
-## instalando o arch linux
+## 2.2 instalando o arch linux
 ```
 # pacstrap /mnt base
 ```
