@@ -9,7 +9,7 @@ passo a passo da instalação do Arch Linux ;)
 - **[pós instalação](https://github.com/c3h/arch-linux-install#p%C3%B3s-instala%C3%A7%C3%A3o)**
 
 ## sobre
-Este guia destina-se a ajudar aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça". O guia pressupõe que você tenha alguma familiaridade com o sistema Linux. 
+Este guia destina-se a ajudar aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça". Pressuponho que você tenha alguma familiaridade com o sistema Linux. 
 
 Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
 ## pré instalação [conexão e disco]
@@ -201,7 +201,7 @@ $ su
 # pacman -S xorg-server xorg-xinit xorg-apps mesa ttf-dejavu gvfs-mtp
 ```
 ### drivers gráficos
->recomendo que leia: https://github.com/Sup3r-Us3r/Arch-Install#instalar-drivers-gr%C3%81ficos
+>recomendo que leia: [instalar-drivers](https://github.com/Sup3r-Us3r/Arch-Install#instalar-drivers-gr%C3%81ficos)
 ```
 # pacman -S xf86-video-intel
 ```
@@ -222,7 +222,7 @@ $ su
 # pacman -S gdm
 ```
 ### interface gráfica
->recomendo que leia: https://github.com/Sup3r-Us3r/Arch-Install#instalar-ambiente-de-trabalho
+>recomendo que leia: [instalar-ambiente-de-trabalho](https://github.com/Sup3r-Us3r/Arch-Install#instalar-ambiente-de-trabalho)
 ```
 # pacman -S gnome
 ```
