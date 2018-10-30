@@ -4,16 +4,16 @@ passo a passo da instalação do Arch Linux ;)
 Escrevi esse tutorial para aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça".
 
 Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
-# 1.0 pré-instalação
-## 1.1 conectando na internet 
+## pré-instalação [conexão e disco]
+### conectando na internet 
 ```
 # wifi-menu
 ```
-### 1.1.1 testando conexão
+### testando conexão
 ```
 # ping -c3 archlinux.org
 ```
-## 1.1.2 verificando o modo de inicialização está como UEFI
+### verificando o modo de inicialização está como UEFI
 ```
 # efivar -l
 ```
@@ -21,7 +21,7 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 ```
 # loadkeys br-abnt2
 ```
-## 1.2 disco
+### disco
 ```
 # fdisk -l
 ```
@@ -46,26 +46,26 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 - > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
 - > 'write' > 'yes' > 'quit'
 
-### 1.2.1 formatando as partições
+### formatando as partições
 ```
 # mkfs.fat -F32 /dev/sda1
 # mkswap /dev/sda2
 # mkfs.ext4 /dev/sda3
 ```
-### 1.2.2 montando as partições
+### montando as partições
 ```
 # mkdir -p /mnt/boot
 # mount /dev/sda1 /mnt/boot
 # swapon /dev/sda2
 # mount /dev/sda3 /mnt
 ```
-# 2.0 instalação
-## 2.1 escolhendo o espelho de download
+## instalação
+### escolhendo o espelho de download
 ```
 # pacman -Sy reflector
 # reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 ```
-## 2.2 instalando o arch linux
+### instalando o arch linux
 ```
 # pacstrap /mnt base
 ```
