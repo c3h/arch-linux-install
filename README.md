@@ -9,64 +9,64 @@ passo a passo da instalação do Arch Linux ;)
 - **[pós instalação](https://github.com/c3h/arch-linux-install#p%C3%B3s-instala%C3%A7%C3%A3o)**
 
 ## sobre
-Escrevi esse tutorial para aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça".
+Este guia destina-se a ajudar aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça". O guia pressupõe que você tenha alguma familiaridade com o sistema Linux. 
 
 Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
 ## pré instalação [conexão e disco]
-	### conectando na internet 
-	```
-	# wifi-menu
-	```
-	### testando conexão
-	```
-	# ping -c3 archlinux.org
-	```
-	### verificando se está habilitado o UEFI
-	```
-	# efivar -l
-	```
-	>se o comando listar variáveis EFI significa que você iniciou no modo UEFI colocar o teclado em ABNT2
-	```
-	# loadkeys br-abnt2
-	```
-	### disco
-	```
-	# fdisk -l
-	```
-	>lista os discos conectados ao computador, identifique o que você irá usar 
-	>e substitua o 'X' para a letra correspondente do seu disco
-	- **irei usar a seguinte estrutura:**
-		- /boot = 300mb
-		- /swap = 2gb
-		- /raiz = restante do disco
-	```
-	# cfdisk /dev/sda
-	```
-	>caso apareca 'select label type' escolha 'gpt'
+### conectando na internet 
+```
+# wifi-menu
+```
+### testando conexão
+```
+# ping -c3 archlinux.org
+```
+### verificando se está habilitado o UEFI
+```
+# efivar -l
+```
+>se o comando listar variáveis EFI significa que você iniciou no modo UEFI colocar o teclado em ABNT2
+```
+# loadkeys br-abnt2
+```
+### disco
+```
+# fdisk -l
+```
+>lista os discos conectados ao computador, identifique o que você irá usar 
+>e substitua o 'X' para a letra correspondente do seu disco
+- **irei usar a seguinte estrutura:**
+	- /boot = 300mb
+	- /swap = 2gb
+	- /raiz = restante do disco
+```
+# cfdisk /dev/sda
+```
+>caso apareca 'select label type' escolha 'gpt'
 
-	**para: '/boot'**
-	- > 'new' > 300M > 'type' > EFI System
+**para: '/boot'**
+- > 'new' > 300M > 'type' > EFI System
 
-	**para: '/swap'**
-	- > 'new' > 2G > 'type' > Linux swap
+**para: '/swap'**
+- > 'new' > 2G > 'type' > Linux swap
 
-	**para: '/raiz'**
-	- > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
-	- > 'write' > 'yes' > 'quit'
+**para: '/raiz'**
+- > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
+- > 'write' > 'yes' > 'quit'
 
-	### formatando as partições
-	```
-	# mkfs.fat -F32 /dev/sda1
-	# mkswap /dev/sda2
-	# mkfs.ext4 /dev/sda3
-	```
-	### montando as partições
-	```
-	# mkdir -p /mnt/boot
-	# mount /dev/sda1 /mnt/boot
-	# swapon /dev/sda2
-	# mount /dev/sda3 /mnt
-	```
+### formatando as partições
+```
+# mkfs.fat -F32 /dev/sda1
+# mkswap /dev/sda2
+# mkfs.ext4 /dev/sda3
+```
+### montando as partições
+```
+# mkdir -p /mnt/boot
+# mount /dev/sda1 /mnt/boot
+# swapon /dev/sda2
+# mount /dev/sda3 /mnt
+```
 ## instalação
 ### escolhendo o espelho de download
 ```
@@ -112,12 +112,12 @@ mais informações [aqui](https://wiki.archlinux.org/index.php/System_time)
 ```
 # hwclock --systohc --utc
 ```
-### configurando a conexão
-Ethernet:
+### conexão
+habilitando ethernet:
 ```
 # systemctl enable dhcpcd
 ```
-Wifi:
+instalando wifi:
 ```
 # pacman -S wpa_supplicant wpa_actiond dialog iw networkmanager
 ```
@@ -131,7 +131,7 @@ mais informações [aqui](https://wiki.archlinux.org/index.php/NetworkManager_%2
 ```
 # passwd
 ```
-### criar usuario
+### criar e configurar usuário
 ```
 # useradd -m -g users -G wheel,storage,power -s /bin/bash COLOQUE-O-NOME-DO-USUARIO
 ```
@@ -139,9 +139,13 @@ Definir senha do usuário:
 ```
 # passwh COLOQUE-O-NOME-DO-USUARIO
 ```
-### dando permisão administrativas para os usuarios do grupo wheel
+**dando permisão administrativas para os usuarios do grupo wheel**
 ```
 # sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
+```
+**instalando controlador de credenciais**
+```
+# pacman -S gnome-keyring
 ```
 ### atualizando o 'sudo'
 ```
@@ -167,6 +171,7 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options root=/dev/sda2 rw
 ```
+mais informações [aqui](https://wiki.archlinux.org/index.php/Systemd-boot)
 ### demontando as partições e reiniciando
 ```
 # exit
