@@ -12,12 +12,13 @@ passo a passo da instalação do Arch Linux ;)
 Este guia destina-se a ajudar aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça". Pressuponho que você tenha alguma familiaridade com o sistema Linux. 
 
 Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
-## pré instalação [conexão e disco]
-### conectando na internet 
+## pré instalação
+### conexão
+**conectando na internet**
 ```
 # wifi-menu
 ```
-### testando conexão
+**testando conexão**
 ```
 # ping -c3 archlinux.org
 ```
@@ -30,6 +31,7 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 # loadkeys br-abnt2
 ```
 ### disco
+**identifique o disco que será utilizado**
 ```
 # fdisk -l
 ```
@@ -54,13 +56,13 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 - > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
 - > 'write' > 'yes' > 'quit'
 
-### formatando as partições
+**formatando as partições**
 ```
 # mkfs.fat -F32 /dev/sda1
 # mkswap /dev/sda2
 # mkfs.ext4 /dev/sda3
 ```
-### montando as partições
+**montando as partições**
 ```
 # mkdir -p /mnt/boot
 # mount /dev/sda1 /mnt/boot
@@ -68,12 +70,12 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 # mount /dev/sda3 /mnt
 ```
 ## instalação
-### escolhendo o espelho de download
+**escolhendo o espelho de download**
 ```
 # pacman -Sy reflector
 # reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 ```
-### instalando o arch linux
+**instalando o arch linux**
 ```
 # pacstrap /mnt base
 ```
@@ -83,20 +85,22 @@ Para a instalação e criação deste tutorial, tive que realizar a junção de 
 # genfstab -U -p /mnt >> /mnt/etc/fstab
 ```
 mais informações [aqui](https://pt.wikipedia.org/wiki/Fstab) e [aqui](https://wiki.archlinux.org/index.php/Fstab)
-### entrando no diretório root do sistema
+
+**entrando no diretório root do sistema**
 ```
 # arch-chroot /mnt
 ```
-### configurando o hostname
+**configurando o hostname**
 ```
 # echo SUBSTITUA-ISSO > /etc/hostname
 ```
-### configure o teclado > KEYMAP
+### idioma e localização
+**configure o teclado > KEYMAP**
 ```
 # loadkeys br-abnt2
 # echo -e 'KEYMAP="br-abnt2.map.gz"' > /etc/vconsole.conf
 ```
-### configurando o idioma
+**configurando o idioma**
 ```
 # sed -i '/pt_BR/,+1 s/^#//' /etc/locale.gen
 # locale-gen
@@ -104,7 +108,8 @@ mais informações [aqui](https://pt.wikipedia.org/wiki/Fstab) e [aqui](https://
 # export LANG=pt_BR.UTF-8
 ```
 mais informações [aqui](https://wiki.archlinux.org/index.php/System_time)
-### configurando o fuso horário
+
+**configurando o fuso horário**
 ```
 # ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 ```
@@ -127,11 +132,12 @@ mais informações [aqui](https://wiki.archlinux.org/index.php/NetworkManager_%2
 # sed -i '/multilib\]/,+1 s/^#//' /etc/pacman.conf
 # pacman -Syu
 ```
-### colocar senha para o usuário root
+### usuário
+**colocar senha para o usuário root**
 ```
 # passwd
 ```
-### criar e configurar usuário
+**criar e configurar usuário**
 ```
 # useradd -m -g users -G wheel,storage,power -s /bin/bash COLOQUE-O-NOME-DO-USUARIO
 ```
@@ -184,44 +190,44 @@ mais informações [aqui](https://wiki.archlinux.org/index.php/Systemd-boot)
 $ su
 # loadkeys br-abnt2
 ```
-### conecte na internet
+**conecte na internet**
 ```
 # nmtui
 ```
-### testando conexão
+**testando conexão**
 ```
 # ping -c3 archlinux.org
 ```
-### instalando base-devel do arch
+**instalando base-devel do arch**
 ```
 # pacman -S base-devel
 ```
-### instalando o XORG 
+**instalando o XORG**
 ```
 # pacman -S xorg-server xorg-xinit xorg-apps mesa ttf-dejavu gvfs-mtp
 ```
-### drivers gráficos
+**drivers gráficos**
 >recomendo que leia: [instalar-drivers](https://github.com/Sup3r-Us3r/Arch-Install#instalar-drivers-gr%C3%81ficos)
 ```
 # pacman -S xf86-video-intel
 ```
-### drivers para a placa de som
+**drivers para a placa de som**
 ```
 # pacman -S alsa-utils alsa-lib pulseaudio pulseaudio-alsa pavucontrol
 ```
-### drivers touchpad
+**drivers touchpad**
 ```
 # pacman -S xf86-input-synaptics
 ```
-### instalando algumas fontes
+**instalando algumas fontes**
 ```
 # sudo pacman -S ttf-dejavu ttf-bitstream-vera ttf-liberation
 ```
-### gerenciador de login
+**gerenciador de login**
 ```
 # pacman -S gdm
 ```
-### interface gráfica
+**interface gráfica**
 >recomendo que leia: [instalar-ambiente-de-trabalho](https://github.com/Sup3r-Us3r/Arch-Install#instalar-ambiente-de-trabalho)
 ```
 # pacman -S gnome
