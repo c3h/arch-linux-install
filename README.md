@@ -3,7 +3,7 @@ passo a passo da instalação do Arch Linux ;)
 
 ## indece
 - **[sobre](https://github.com/c3h/arch-linux-install#sobre)**
-- **[pré-instalação](https://github.com/c3h/arch-linux-install#pr%C3%A9-instala%C3%A7%C3%A3o-conex%C3%A3o-e-disco)**
+- **[pré instalação](https://github.com/c3h/arch-linux-install#pr%C3%A9-instala%C3%A7%C3%A3o-conex%C3%A3o-e-disco)**
 - **[instalação](https://github.com/c3h/arch-linux-install#instala%C3%A7%C3%A3o)**
 - **[configurando sistema](https://github.com/c3h/arch-linux-install#configurando-sistema)**
 - **[pós instalação](https://github.com/c3h/arch-linux-install#p%C3%B3s-instala%C3%A7%C3%A3o)**
@@ -12,61 +12,61 @@ passo a passo da instalação do Arch Linux ;)
 Escrevi esse tutorial para aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça".
 
 Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
-## pré-instalação [conexão e disco]
-### conectando na internet 
-```
-# wifi-menu
-```
-### testando conexão
-```
-# ping -c3 archlinux.org
-```
-### verificando se está habilitado o UEFI
-```
-# efivar -l
-```
->se o comando listar variáveis EFI significa que você iniciou no modo UEFI colocar o teclado em ABNT2
-```
-# loadkeys br-abnt2
-```
-### disco
-```
-# fdisk -l
-```
->lista os discos conectados ao computador, identifique o que você irá usar 
->e substitua o 'X' para a letra correspondente do seu disco
-- **irei usar a seguinte estrutura:**
-	- /boot = 300mb
-	- /swap = 2gb
-	- /raiz = restante do disco
-```
-# cfdisk /dev/sda
-```
->caso apareca 'select label type' escolha 'gpt'
+## pré instalação [conexão e disco]
+	### conectando na internet 
+	```
+	# wifi-menu
+	```
+	### testando conexão
+	```
+	# ping -c3 archlinux.org
+	```
+	### verificando se está habilitado o UEFI
+	```
+	# efivar -l
+	```
+	>se o comando listar variáveis EFI significa que você iniciou no modo UEFI colocar o teclado em ABNT2
+	```
+	# loadkeys br-abnt2
+	```
+	### disco
+	```
+	# fdisk -l
+	```
+	>lista os discos conectados ao computador, identifique o que você irá usar 
+	>e substitua o 'X' para a letra correspondente do seu disco
+	- **irei usar a seguinte estrutura:**
+		- /boot = 300mb
+		- /swap = 2gb
+		- /raiz = restante do disco
+	```
+	# cfdisk /dev/sda
+	```
+	>caso apareca 'select label type' escolha 'gpt'
 
-**para: '/boot'**
-- > 'new' > 300M > 'type' > EFI System
+	**para: '/boot'**
+	- > 'new' > 300M > 'type' > EFI System
 
-**para: '/swap'**
-- > 'new' > 2G > 'type' > Linux swap
+	**para: '/swap'**
+	- > 'new' > 2G > 'type' > Linux swap
 
-**para: '/raiz'**
-- > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
-- > 'write' > 'yes' > 'quit'
+	**para: '/raiz'**
+	- > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
+	- > 'write' > 'yes' > 'quit'
 
-### formatando as partições
-```
-# mkfs.fat -F32 /dev/sda1
-# mkswap /dev/sda2
-# mkfs.ext4 /dev/sda3
-```
-### montando as partições
-```
-# mkdir -p /mnt/boot
-# mount /dev/sda1 /mnt/boot
-# swapon /dev/sda2
-# mount /dev/sda3 /mnt
-```
+	### formatando as partições
+	```
+	# mkfs.fat -F32 /dev/sda1
+	# mkswap /dev/sda2
+	# mkfs.ext4 /dev/sda3
+	```
+	### montando as partições
+	```
+	# mkdir -p /mnt/boot
+	# mount /dev/sda1 /mnt/boot
+	# swapon /dev/sda2
+	# mount /dev/sda3 /mnt
+	```
 ## instalação
 ### escolhendo o espelho de download
 ```
