@@ -1,5 +1,13 @@
 # install-arch-linux
 passo a passo da instalação do Arch Linux ;)
+
+## indece
+-[sobre](https://github.com/c3h/arch-linux-install#sobre)
+-[pré-instalação](https://github.com/c3h/arch-linux-install#pr%C3%A9-instala%C3%A7%C3%A3o-conex%C3%A3o-e-disco)
+-[instalação](https://github.com/c3h/arch-linux-install#instala%C3%A7%C3%A3o)
+-[configurando sistema](https://github.com/c3h/arch-linux-install#configurando-sistema)
+-[pós instalação](https://github.com/c3h/arch-linux-install#p%C3%B3s-instala%C3%A7%C3%A3o)
+
 ## sobre
 Escrevi esse tutorial para aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça".
 
@@ -79,7 +87,6 @@ mais informações [aqui](https://pt.wikipedia.org/wiki/Fstab) e [aqui](https://
 ```
 # arch-chroot /mnt
 ```
-mais informações [aqui](https://wiki.archlinux.org/index.php/Chroot_(Portugu%C3%AAs))
 ### configurando o hostname
 ```
 # echo SUBSTITUA-ISSO > /etc/hostname
@@ -114,6 +121,7 @@ Wifi:
 ```
 # pacman -S wpa_supplicant wpa_actiond dialog iw networkmanager
 ```
+mais informações [aqui](https://wiki.archlinux.org/index.php/NetworkManager_%28Portugu%C3%AAs%29#Introdu.C3.A7.C3.A3o)
 ### configurando repositorio
 ```
 # sed -i '/multilib\]/,+1 s/^#//' /etc/pacman.conf
@@ -165,7 +173,7 @@ options root=/dev/sda2 rw
 # umount -R /mnt
 # reboot
 ```
-### pós instalação
+## pós instalação
 >realize o login no sistema
 ```
 $ su
