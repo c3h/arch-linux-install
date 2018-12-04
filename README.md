@@ -37,24 +37,25 @@ identifique o disco que será utilizado utilizando o [fdisk](https://wiki.archli
 ```
 >lista os discos conectados ao computador, identifique o que você irá usar 
 >e substitua o 'X' para a letra correspondente do seu disco
-- irei usar a seguinte estrutura:
-	- /boot = 300mb
-	- /swap = 2gb
-	- /raiz = restante do disco
+
+irei usar a seguinte estrutura:
+- /boot = 300mb
+- /swap = 2gb
+- /raiz = restante do disco
 ```
 # cfdisk /dev/sda
 ```
 >caso apareca 'select label type' escolha 'gpt'
 
 para: '/boot'
-- > 'new' > 300M > 'type' > EFI System
+- 'new' > 300M > 'type' > EFI System
 
 para: '/swap'
-- > 'new' > 2G > 'type' > Linux swap
+- 'new' > 2G > 'type' > Linux swap
 
 para: '/raiz'
-- > 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
-- > 'write' > 'yes' > 'quit'
+- 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
+- 'write' > 'yes' > 'quit'
 
 formatando as partições
 ```
@@ -127,7 +128,7 @@ instalando wifi:
 # pacman -S wpa_supplicant wpa_actiond dialog iw networkmanager
 ```
 >mais informações [aqui](https://wiki.archlinux.org/index.php/NetworkManager_%28Portugu%C3%AAs%29#Introdu.C3.A7.C3.A3o)
-### configurando repositorio
+### configurando repositório
 ```
 # sed -i '/multilib\]/,+1 s/^#//' /etc/pacman.conf
 # pacman -Syu
@@ -141,7 +142,7 @@ criar e configurar usuário
 ```
 # useradd -m -g users -G wheel,storage,power -s /bin/bash COLOQUE-O-NOME-DO-USUARIO
 ```
-Definir senha do usuário:
+definir senha do usuário
 ```
 # passwh COLOQUE-O-NOME-DO-USUARIO
 ```
@@ -160,17 +161,19 @@ instalando controlador de credenciais
 ### instalando o bootloader
 ```
 # bootctl --path=/boot install
+```
+- coloque o seguinte conteúdo em:
+```
 # nano /boot/loader/loader.conf
 ```
-- coloque o seguinte conteúdo
 ```
 timeout 2
 default arch
 ```
+- coloque o seguinte conteúdo em:
 ```
 # nano /boot/loader/entries/arch.conf
 ```
-- coloque o seguinte conteúdo
 ```
 title Arch Linux
 linux /vmlinuz-linux
@@ -178,7 +181,7 @@ initrd /initramfs-linux.img
 options root=/dev/sda2 rw
 ```
 >mais informações [aqui](https://wiki.archlinux.org/index.php/Systemd-boot)
-### demontando as partições e reiniciando
+### desmontando as partições e reiniciando
 ```
 # exit
 # umount -R /mnt
