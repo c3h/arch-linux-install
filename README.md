@@ -235,6 +235,7 @@ interface gráfica
 ```
 # pacman -S gnome
 ```
+>para mais informações sobre o [gnome](https://wiki.archlinux.org/index.php/GNOME)
 ### GDM: ativar inicialização junto com o sistema
 ```
 # systemctl enable gdm.service
