@@ -12,6 +12,8 @@ passo a passo da instalação do Arch Linux ;)
 Este guia destina-se a ajudar aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça". Pressuponho que você tenha alguma familiaridade com o sistema Linux. 
 
 Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
+
+A ordem aqui apresentada deve ser seguida para evitar possiveis problemas de compatibilidade.
 ## pré instalação
 ### conexão
 conectando na internet
@@ -41,8 +43,8 @@ identifique o disco que será utilizado utilizando o [fdisk](https://wiki.archli
 >e substitua o 'X' para a letra correspondente do seu disco
 
 irei usar a seguinte estrutura:
-- /boot = 300mb
-- /swap = 2gb
+- /boot = 500mb
+- /swap = 3gb
 - /raiz = restante do disco
 ```
 # cfdisk /dev/sdX
@@ -61,9 +63,9 @@ para: '/raiz'
 
 formatando as partições
 ```
-# mkswap /dev/sda2
+# mkswap -L  swap /dev/sda2
 # mkfs.ext4 /dev/sda3
-# mkfs.fat -F32 /dev/sda1
+# mkfs.fat -F32 -n BOOT /dev/sda1
 ```
 montando as partições
 ```
@@ -85,15 +87,9 @@ instalando o arch linux
 ## configurando sistema
 ### configurando o FSTAB
 ```
-# genfstab -U -p /mnt >> /mnt/etc/fstab
+# genfstab -U /mnt >> /mnt/etc/fstab
 ```
 >mais informações [aqui](https://pt.wikipedia.org/wiki/Fstab) e [aqui](https://wiki.archlinux.org/index.php/Fstab)
-
-### configurando mkinitcpio
-
-```
-# mkinitcpio -p linux
-```
 
 entrando no diretório root do sistema
 ```
@@ -131,9 +127,14 @@ habilitando ethernet:
 ```
 # systemctl enable dhcpcd
 ```
+### configurando mkinitcpio
+
+```
+# mkinitcpio -p linux
+```
 instalando wifi:
 ```
-# pacman -S wpa_supplicant wpa_actiond dialog iw networkmanager
+# pacman -S wireless_tools wpa_supplicant wifi-menu dialog
 ```
 >mais informações [aqui](https://wiki.archlinux.org/index.php/NetworkManager_%28Portugu%C3%AAs%29#Introdu.C3.A7.C3.A3o)
 ### configurando repositório
@@ -215,7 +216,7 @@ instalando base-devel do arch
 ```
 instalando o XORG
 ```
-# pacman -S xorg-server xorg-xinit xorg-apps mesa ttf-dejavu gvfs-mtp
+# pacman -S xorg-server xorg-xinit
 ```
 drivers gráficos
 >recomendo que leia: [instalar-drivers](https://github.com/Sup3r-Us3r/Arch-Install#instalar-drivers-gr%C3%81ficos)
@@ -263,7 +264,7 @@ https://github.com/Sup3r-Us3r/Arch-Install#gerenciadores-de-janelas
 
 https://wiki.archlinux.org/index.php/Installation_guide#UEFI.2FGPT
 
-https://forum.archlinux-br.org/viewtopic.php?id=4453
+https://forum.archlinux-br.org/viewtopic.php?id=4453 [RECOMENDO LER]
 
 https://wiki.archlinux.org/index.php/Systemd-boot#Installation
 
