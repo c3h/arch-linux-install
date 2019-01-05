@@ -26,7 +26,9 @@ testando conexão
 ```
 # efivar -l
 ```
->se o comando listar variáveis EFI significa que você iniciou no modo UEFI colocar o teclado em ABNT2
+>se o comando listar variáveis EFI significa que você iniciou no modo UEFI 
+
+colocar o teclado em ABNT2
 ```
 # loadkeys br-abnt2
 ```
@@ -43,7 +45,7 @@ irei usar a seguinte estrutura:
 - /swap = 2gb
 - /raiz = restante do disco
 ```
-# cfdisk /dev/sda
+# cfdisk /dev/sdX
 ```
 >caso apareca 'select label type' escolha 'gpt'
 
@@ -59,16 +61,16 @@ para: '/raiz'
 
 formatando as partições
 ```
-# mkfs.fat -F32 /dev/sda1
 # mkswap /dev/sda2
 # mkfs.ext4 /dev/sda3
+# mkfs.fat -F32 /dev/sda1
 ```
 montando as partições
 ```
+# mount /dev/sda3 /mnt
+# swapon /dev/sda2
 # mkdir -p /mnt/boot
 # mount /dev/sda1 /mnt/boot
-# swapon /dev/sda2
-# mount /dev/sda3 /mnt
 ```
 ## instalação
 escolhendo o espelho de download
@@ -86,6 +88,12 @@ instalando o arch linux
 # genfstab -U -p /mnt >> /mnt/etc/fstab
 ```
 >mais informações [aqui](https://pt.wikipedia.org/wiki/Fstab) e [aqui](https://wiki.archlinux.org/index.php/Fstab)
+
+### configurando mkinitcpio
+
+```
+# mkinitcpio -p linux
+```
 
 entrando no diretório root do sistema
 ```
@@ -178,7 +186,7 @@ default arch
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-options root=/dev/sda2 rw
+options root=/dev/sda3 rw
 ```
 >mais informações [aqui](https://wiki.archlinux.org/index.php/Systemd-boot)
 ### desmontando as partições e reiniciando
