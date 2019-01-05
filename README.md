@@ -7,13 +7,17 @@ passo a passo da instalação do Arch Linux ;)
 - **[instalação](https://github.com/c3h/arch-linux-install#instala%C3%A7%C3%A3o)**
 - **[configurando sistema](https://github.com/c3h/arch-linux-install#configurando-sistema)**
 - **[pós instalação](https://github.com/c3h/arch-linux-install#p%C3%B3s-instala%C3%A7%C3%A3o)**
+- **[LEIA TAMBEM](https://github.com/c3h/arch-linux-install/wiki)**
 
 ## sobre
-Este guia destina-se a ajudar aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça". Pressuponho que você tenha alguma familiaridade com o sistema Linux. 
+Este guia destina-se a ajudar aqueles que como eu, tiveram problemas com a instalação do Arch Linux no modo UEFI e claro, uma forma de manter registro e não ter todo o trabalho de procurar "tudo" novamente na "raça". 
+
+Pressuponho que você tenha alguma familiaridade com o sistema Linux. 
 
 Para a instalação e criação deste tutorial, tive que realizar a junção de alguns tutoriais diferentes e que se encontram na [bibliografia](https://github.com/c3h/install-arch-linux#bibliografia).
 
-A ordem aqui apresentada deve ser seguida para evitar possiveis problemas de compatibilidade.
+A ordem aqui apresentada deve ser seguida para evitar possiveis problemas.
+
 ## pré instalação
 ### conexão
 conectando na internet
