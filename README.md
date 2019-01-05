@@ -271,3 +271,5 @@ https://wiki.archlinux.org/index.php/Systemd-boot#Installation
 https://antoninopraxedes.wordpress.com/2016/01/16/dual-boot-instalacao-arch-linux-com-windows-10/
 
 https://wiki.archlinux.org/index.php/Xorg_(Portugu%C3%AAs)
+
+https://www.tecmint.com/arch-linux-installation-and-configuration-guide/
