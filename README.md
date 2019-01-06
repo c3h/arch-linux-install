@@ -150,23 +150,6 @@ instalando wifi:
 ```
 # pacman -S sudo
 ```
-### usuário
-colocar senha para o usuário root
-```
-# passwd
-```
-criar e configurar usuário
-```
-# useradd -m -g users -G wheel,storage,power -s /bin/bash COLOQUE-O-NOME-DO-USUARIO
-```
-definir senha do usuário
-```
-# passwh COLOQUE-O-NOME-DO-USUARIO
-```
-dando permisão administrativas para os usuarios do grupo wheel
-```
-# sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
-```
 ### instalando o bootloader
 ```
 # bootctl --path=/boot install
@@ -190,6 +173,25 @@ initrd /initramfs-linux.img
 options root=/dev/sda3 rw
 ```
 >mais informações [aqui](https://wiki.archlinux.org/index.php/Systemd-boot)
+
+### usuário
+colocar senha para o usuário root
+```
+# passwd
+```
+criar e configurar usuário
+```
+# useradd -m -g users -G wheel,storage,power -s /bin/bash COLOQUE-O-NOME-DO-USUARIO
+```
+definir senha do usuário
+```
+# passwh COLOQUE-O-NOME-DO-USUARIO
+```
+dando permisão administrativas para os usuarios do grupo wheel
+```
+# sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
+```
+
 ### desmontando as partições e reiniciando
 ```
 # exit
