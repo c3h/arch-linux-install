@@ -56,10 +56,10 @@ irei usar a seguinte estrutura:
 >caso apareca 'select label type' escolha 'gpt'
 
 para: '/boot'
-- 'new' > 300M > 'type' > EFI System
+- 'new' > 500M > 'type' > EFI System
 
 para: '/swap'
-- 'new' > 2G > 'type' > Linux swap
+- 'new' > 3G > 'type' > Linux swap
 
 para: '/raiz'
 - 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
@@ -138,13 +138,17 @@ habilitando ethernet:
 ```
 instalando wifi:
 ```
-# pacman -S wireless_tools wpa_supplicant wifi-menu dialog
+# pacman -S wpa_supplicant wpa_actiond dialog iw networkmanager
 ```
 >mais informações [aqui](https://wiki.archlinux.org/index.php/NetworkManager_%28Portugu%C3%AAs%29#Introdu.C3.A7.C3.A3o)
 ### configurando repositório
 ```
 # sed -i '/multilib\]/,+1 s/^#//' /etc/pacman.conf
 # pacman -Syu
+```
+### instalando o 'sudo'
+```
+# pacman -S sudo
 ```
 ### usuário
 colocar senha para o usuário root
@@ -162,14 +166,6 @@ definir senha do usuário
 dando permisão administrativas para os usuarios do grupo wheel
 ```
 # sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
-```
-instalando controlador de credenciais
-```
-# pacman -S gnome-keyring
-```
-### atualizando o 'sudo'
-```
-# pacman -S sudo
 ```
 ### instalando o bootloader
 ```
@@ -220,7 +216,7 @@ instalando base-devel do arch
 ```
 instalando o XORG
 ```
-# pacman -S xorg-server xorg-xinit
+# pacman -S xorg-server xorg-xinit xorg-apps mesa ttf-dejavu gvfs-mtp
 ```
 drivers gráficos
 >recomendo que leia: [instalar-drivers](https://github.com/Sup3r-Us3r/Arch-Install#instalar-drivers-gr%C3%81ficos)
@@ -237,11 +233,7 @@ drivers touchpad
 ```
 instalando algumas fontes
 ```
-# sudo pacman -S ttf-dejavu ttf-bitstream-vera ttf-liberation
-```
-gerenciador de login
-```
-# pacman -S gdm
+# pacman -S ttf-dejavu ttf-bitstream-vera ttf-liberation
 ```
 interface gráfica
 >recomendo que leia: [instalar-ambiente-de-trabalho](https://github.com/Sup3r-Us3r/Arch-Install#instalar-ambiente-de-trabalho)
