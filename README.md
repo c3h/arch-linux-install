@@ -225,7 +225,7 @@ drivers gráficos
 ```
 drivers para a placa de som
 ```
-# pacman -S alsa-utils alsa-lib pulseaudio pulseaudio-alsa pavucontrol
+# pacman -S alsa-utils alsa-lib pulseaudio-alsa pavucontrol
 ```
 drivers touchpad
 ```
@@ -240,6 +240,8 @@ interface gráfica
 ```
 # pacman -S gnome
 ```
+instale os pacotes que você usa, no meu caso, criei essa lista: 3, 5, 6, 7, 8, 14, 16, 18, 20, 21, 22, 25, 27, 29, 30, 31, 32, 33, 35, 36, 41, 42, 50, 51, 52, 53, 56, 59, 61
+
 >para mais informações sobre o [gnome](https://wiki.archlinux.org/index.php/GNOME)
 ### GDM: ativar inicialização junto com o sistema
 ```
