@@ -126,11 +126,6 @@ configurando o fuso horário
 ```
 # hwclock --systohc --utc
 ```
-### conexão
-habilitando ethernet:
-```
-# systemctl enable dhcpcd
-```
 ### configurando mkinitcpio
 
 ```
@@ -206,6 +201,7 @@ $ su
 ```
 conecte na internet
 ```
+# systemctl enable NetowrkManager.service
 # nmtui
 ```
 testando conexão
