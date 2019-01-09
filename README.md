@@ -65,13 +65,21 @@ para: '/raiz'
 - 'new' > TECLE APENAS ENTER > 'type' > Linux filesystem 
 - 'write' > 'yes' > 'quit'
 
-formatando as partições
+Antes de continuar, verifique a nomenclatura das partições com o comando `# fdisk -l`
+
+No meu caso ficou como: 
+
+  `sda1 = root`
+  `sda2 = swap`
+  `sda3 = /`
+
+**formatando as partições**
 ```
 # mkswap -L  swap /dev/sda2
 # mkfs.ext4 /dev/sda3
 # mkfs.fat -F32 -n BOOT /dev/sda1
 ```
-montando as partições
+**montando as partições**
 ```
 # mount /dev/sda3 /mnt
 # swapon /dev/sda2
@@ -157,6 +165,7 @@ instalando wifi:
 timeout 2
 default arch
 ```
+>após editar, tecle `ctrl+s` para salvar e `ctrl+x` para sair do nano
 - coloque o seguinte conteúdo em:
 ```
 # nano /boot/loader/entries/arch.conf
@@ -201,7 +210,7 @@ $ su
 ```
 conecte na internet
 ```
-# systemctl enable NetowrkManager.service
+# systemctl start NetowrkManager.service
 # nmtui
 ```
 testando conexão
@@ -216,14 +225,14 @@ instalando o XORG
 ```
 # pacman -S xorg-server xorg-xinit xorg-apps mesa ttf-dejavu gvfs-mtp
 ```
+drivers para a placa de som
+```
+# pacman -S alsa-utils alsa-lib pulseaudio-alsa pavucontrol
+```
 drivers gráficos
 >recomendo que leia: [instalar-drivers](https://github.com/Sup3r-Us3r/Arch-Install#instalar-drivers-gr%C3%81ficos)
 ```
 # pacman -S xf86-video-intel
-```
-drivers para a placa de som
-```
-# pacman -S alsa-utils alsa-lib pulseaudio-alsa pavucontrol
 ```
 drivers touchpad
 ```
@@ -234,7 +243,7 @@ instalando algumas fontes
 # pacman -S ttf-dejavu ttf-bitstream-vera ttf-liberation
 ```
 interface gráfica
->recomendo que leia: [instalar-ambiente-de-trabalho](https://github.com/Sup3r-Us3r/Arch-Install#instalar-ambiente-de-trabalho)
+>recomendo que leia: [instalar ambiente de trabalho](https://github.com/Sup3r-Us3r/Arch-Install#instalar-ambiente-de-trabalho)
 ```
 # pacman -S gnome
 ```
